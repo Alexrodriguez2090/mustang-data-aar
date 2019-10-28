@@ -1,0 +1,13 @@
+{
+    "firstName": "Alejandro",
+    "lastName": "Rodriguez",
+    "preferredName": "Alex",
+    "email": "myemail@email.com",
+    "phoneNumber": "123-456-7890",
+    "city": "Romeoville",
+    "state": "IL",
+    "zip": "60446",
+    "lat": "41.60",
+    "lng": "-88.07", 
+    "favoriteHobby": "Listening to music"
+}
