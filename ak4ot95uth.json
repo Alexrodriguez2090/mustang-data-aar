@@ -1,0 +1,13 @@
+{
+    "firstName": "Peter",
+    "lastName": "Parker",
+    "preferredName": "Peter",
+    "email": "spiderman@email.com",
+    "phoneNumber": "123-456-7890",
+    "city": "New York City",
+    "state": "NY",
+    "zip": "60446",
+    "lat": "40.71",
+    "lng": "-74.01", 
+    "favoriteHobby": "Saving the city"
+}
