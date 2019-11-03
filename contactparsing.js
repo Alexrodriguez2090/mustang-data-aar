@@ -18,6 +18,7 @@ function nextContact() {
 	for (contactProgress = 0; contactProgress < contacts.length; contactProgress++) {
 		showContact()
 	}
+	document.getElementById("contactsID").innerHTML = "There are " + contactProgress + " contacts to log, press 'Show contacts' above.";
 }
 
 function showContact() {
@@ -32,6 +33,7 @@ function showContact() {
 	}
     ofIndexLoad.send();
 }
+
 function check() {
 	for (i = 0; i < contactsSquared.length; i++) {
 		console.log(contactsSquared[i])

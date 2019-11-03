@@ -1,12 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
+<!--
+    Author:      Alejandro Rodriguez
+    Class:       Web and Distributed Programming 
+    Project:     Mustang v1
+    Description: First version of the contact logger. 
+-->
 <head>
 	<title>JSON Contacts</title>
+	<meta charset="utf-8"/>
 	<script src="contactparsing.js"></script>
+	<link rel="stylesheet" href="contactparsing.css">
 </head>
 <body onload="getIndex()">
-<button onclick="nextContact()">Load contacts to memory</button>
-<button onclick="check()">Show contacts</button>
-<div id="contactsID"></div>
+
+	<h1>Contact logger v1</h1>
+	<hr /><br />
+
+	<button onclick="nextContact()">Load contacts to memory</button>
+	<button onclick="check()">Show contacts</button>
+	<br /><br />
+
+	<div id="contactsID">Press "Load contacts to memory" to start.</div>
+
 </body>
 </html>
