@@ -2,6 +2,7 @@ var contacts = [];
 var contactsSquared = [];
 var contactProgress = 0;
 
+//On page load, it already grabs what it needs to begin. I had this as a button to begin with, but as I kept testing it, I don't really feel this needed to be a button.
 function getIndex() {
     var indexLoad = new XMLHttpRequest();
     indexLoad.open("GET", "https://mustang-index.azurewebsites.net/index.json");
@@ -14,6 +15,7 @@ function getIndex() {
     indexLoad.send();
 }
 
+//Grabs the contacts and puts them in their own list, along with showContact.
 function nextContact() {
 	for (contactProgress = 0; contactProgress < contacts.length; contactProgress++) {
 		showContact()
@@ -21,6 +23,7 @@ function nextContact() {
 	document.getElementById("contactsID").innerHTML = "There are " + contactProgress + " contacts to log, press 'Show contacts' above.";
 }
 
+//Part of nextContact, this is what makes it work.
 function showContact() {
 	console.log(contacts[contactProgress]);
 	var ofIndexLoad = new XMLHttpRequest();
@@ -34,6 +37,7 @@ function showContact() {
     ofIndexLoad.send();
 }
 
+//Logs the contacts to the html page.
 function check() {
 	for (i = 0; i < contactsSquared.length; i++) {
 		console.log(contactsSquared[i])
