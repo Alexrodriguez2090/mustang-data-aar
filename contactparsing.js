@@ -1,6 +1,7 @@
 var contacts = [];
 var contactsSquared = [];
 var contactProgress = 0;
+var variableContact = 0;
 
 //On page load, it already grabs what it needs to begin. I had this as a button to begin with, but as I kept testing it, I don't really feel this needed to be a button.
 function getIndex() {
@@ -45,4 +46,74 @@ function check() {
 			"<br>Last Name: " + contactsSquared[i].lastName + "<br>Email: " + contactsSquared[i].email + "<br>Phone #: " + contactsSquared[i].phoneNumber + 
 			"<br>City: " + contactsSquared[i].city + ", " + contactsSquared[i].state + "<br>Hobby: " + contactsSquared[i].favoriteHobby + "<br><br><br>");
 	}
+	currentContactTable()
+}
+
+function override() {
+	document.getElementById("contactsID").innerHTML = " ";
+	for (i = 0; i < contactsSquared.length; i++) {
+		document.getElementById("contactsID").insertAdjacentHTML("beforeend", "<h3>Contact: " + contactsSquared[i].preferredName + "</h3>First Name: " + contactsSquared[i].firstName + 
+			"<br>Last Name: " + contactsSquared[i].lastName + "<br>Email: " + contactsSquared[i].email + "<br>Phone #: " + contactsSquared[i].phoneNumber + 
+			"<br>City: " + contactsSquared[i].city + ", " + contactsSquared[i].state + "<br>Hobby: " + contactsSquared[i].favoriteHobby + "<br><br><br>");
+	}
+	currentContactTable()
+}
+
+function currentContactTable() {
+	currentContact = contactsSquared[variableContact];
+    document.getElementById("nameID").value = currentContact.preferredName;
+    document.getElementById("emailID").value = currentContact.email;
+    document.getElementById("fnameID").value = currentContact.firstName;
+    document.getElementById("lnameID").value = currentContact.lastName;
+    document.getElementById("phoneID").value = currentContact.phoneNumber;
+    document.getElementById("cityID").value = currentContact.city;
+    document.getElementById("stateID").value = currentContact.state;
+    document.getElementById("zipID").value = currentContact.zip;
+}
+
+function next() {
+	if (variableContact < (contactsSquared.length - 1)) {
+		variableContact++;
+	}
+	else {
+	}
+
+	currentContact = contactsSquared[variableContact];
+	currentContactTable();
+}
+
+function previous() {
+	if (variableContact > 0) {
+		variableContact--;
+	}
+
+	currentContact = contactsSquared[variableContact];
+	currentContactTable();
+}
+
+function newContact() {
+	var fnamevariable = '{"firstName": "'+ document.getElementById("fnameID").value + '", ';
+    var lnamevariable = '"lastName": "'+ document.getElementById("lnameID").value + '", ';
+	var namevariable = '"preferredName": "'+ document.getElementById("nameID").value + '", ';
+    var emailvariable = '"email": "'+ document.getElementById("emailID").value + '", ';
+    var phonevariable = '"phoneNumber": "'+ document.getElementById("phoneID").value + '", ';
+    var cityvariable = '"city": "'+ document.getElementById("cityID").value + '", ';
+    var statevariable = '"state": "'+ document.getElementById("stateID").value + '", ';
+    var zipvariable = '"zip": "'+ document.getElementById("zipID").value + '"}';
+    var pushedVariable = fnamevariable+lnamevariable+namevariable+emailvariable+phonevariable+cityvariable+statevariable+zipvariable;
+    pushedVariable = JSON.parse(pushedVariable)
+	contactsSquared.push(pushedVariable);
+	console.log(pushedVariable)
+}
+
+function delContact() {
+	if (variableContact == (contactsSquared.length - 1)) {
+		contactsSquared.splice(variableContact,1)
+		variableContact = variableContact - 1;
+	}
+	else {
+		contactsSquared.splice(variableContact,1);
+	}
+	console.log(contactsSquared)
+	override()
 }
