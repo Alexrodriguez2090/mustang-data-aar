@@ -3,18 +3,20 @@
 <!--
     Author:      Alejandro Rodriguez
     Class:       Web and Distributed Programming 
-    Project:     Mustang v1
+    Project:     Mustang v2
     Description: First version of the contact logger. 
 -->
 <head>
 	<title>JSON Contacts</title>
 	<meta charset="utf-8"/>
 	<script src="contactparsing.js"></script>
+	<script src="auto-complete.js"></script>
 	<link rel="stylesheet" href="contactparsing.css">
+	<link rel="stylesheet" href="auto-complete.css">
 </head>
 <body onload="getIndex()">
 
-	<h1>Contact logger v1</h1>
+	<h1>Contact logger v2</h1>
 	<hr /><br />
 
 	<button onclick="nextContact()">Load contacts to memory</button>
@@ -28,18 +30,47 @@
 		First name: <input id="fnameID" type="text" value="" size="20"><br />
 		Last name: <input id="lnameID" type="text" value="" size="20"><br />
 		Phone #: <input id="phoneID" type="text" value="" size="20"><br />
+		Zip: <input id="zipID" type="text" value="" size="20" onblur="zipAutofill()"><br />
 		City: <input id="cityID" type="text" value="" size="20"><br />
 		State: <input id="stateID" type="text" value="" size="20"><br />
-		Zip: <input id="zipID" type="text" value="" size="20"><br />
 	</div>
 
 	<div><button onclick="newContact()">New</button>
 		<button onclick="delContact()">Delete</button>
 		<button onclick="previous()">Previous</button>
 		<button onclick="next()">Next</button>
+		<button onclick="updateContact()">Update</button>
 	</div>
 
 	<div id="contactsID">Press "Load contacts to memory" to start.</div>
+	<script>
+		var ac1 = new autoComplete({
+   		selector: '#stateID',
+    	minChars: 1,
+    	source: function(term, suggest){
+        	term = term.toLowerCase();
+        	var choices = ["AK", "AL", "AR", "AS", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "GU", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", 
+				"MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "PR", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VI", "VT", "WA", "WI", "WV", "WY"];
+        	var matches = [];
+        	for (i=0; i<choices.length; i++)
+            	if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+        	suggest(matches);
+    	}
+	});
+
+		var ac2 = new autoComplete({
+   		selector: '#cityID',
+    	minChars: 1,
+    	source: function(term, suggest){
+        	term = term.toLowerCase();
+        	var choices = ["New York City", "Minooka", "Elk Grove Village", "Bolingbrook", "Chicago", "Romeoville"];
+        	var matches = [];
+        	for (i=0; i<choices.length; i++)
+            	if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+        	suggest(matches);
+    	}
+	});
+	</script>
 
 </body>
 </html>

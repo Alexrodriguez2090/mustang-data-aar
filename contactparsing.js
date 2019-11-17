@@ -59,6 +59,27 @@ function override() {
 	currentContactTable()
 }
 
+function zipAutofill() {
+	zipPlace = []
+    var zipFind = new XMLHttpRequest();
+    zipFind.open("GET", "getCityState.php?zip=" + document.getElementById("zipID").value);
+    zipFind.onreadystatechange = function() {
+    	if (zipFind.readyState == 4 && zipFind.status == 200) {
+    		var response = zipFind.responseText;
+  	    	console.log(response)
+  	    	var zipPlace = response.split(", ");
+   	    	console.log(zipPlace)
+  		if (document.getElementById("cityID").value == "") {
+   	    	document.getElementById("cityID").value = zipPlace[0];
+  		}
+ 		if (document.getElementById("stateID").value == "") {
+  	    	document.getElementById("stateID").value = zipPlace[1];
+  		}
+	}
+}
+    zipFind.send();
+}
+
 function currentContactTable() {
 	currentContact = contactsSquared[variableContact];
     document.getElementById("nameID").value = currentContact.preferredName;
@@ -69,6 +90,18 @@ function currentContactTable() {
     document.getElementById("cityID").value = currentContact.city;
     document.getElementById("stateID").value = currentContact.state;
     document.getElementById("zipID").value = currentContact.zip;
+}
+
+function updateContact() {
+	currentContact = contactsSquared[variableContact]
+	currentContact.preferredName = document.getElementById("nameID").value;
+    currentContact.email = document.getElementById("emailID").value;
+    currentContact.firstName = document.getElementById("fnameID").value;
+    currentContact.lastName = document.getElementById("lnameID").value;
+    currentContact.phoneNumber = document.getElementById("phoneID").value;
+    currentContact.city = document.getElementById("cityID").value;
+    currentContact.state = document.getElementById("stateID").value;
+    currentContact.zip = document.getElementById("zipID").value;
 }
 
 function next() {
@@ -117,3 +150,16 @@ function delContact() {
 	console.log(contactsSquared)
 	override()
 }
+
+var demo1 = new autoComplete({
+selector: 'document.getElementById("nameid").value',
+minChars: 1,
+source: function(term, suggest){
+    term = term.toLowerCase();
+    var choices = ['ActionScript', 'AppleScript', 'Asp', 'Assembly', 'BASIC', 'Batch', 'C', 'C++', 'CSS', 'Clojure', 'COBOL', 'ColdFusion', 'Erlang', 'Fortran', 'Groovy', 'Haskell', 'HTML', 'Java', 'JavaScript', 'Lisp', 'Perl', 'PHP', 'PowerShell', 'Python', 'Ruby', 'Scala', 'Scheme', 'SQL', 'TeX', 'XML'];
+    var matches = [];
+    for (i=0; i<choices.length; i++)
+        if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+    suggest(matches);
+}
+});
