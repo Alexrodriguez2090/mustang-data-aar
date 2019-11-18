@@ -13,3 +13,6 @@ h3 {
 	width:230px;
 	text-align:right;
 }
+#buttonboxes {
+	position:relative;
+}
