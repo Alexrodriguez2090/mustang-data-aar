@@ -21,7 +21,11 @@ function nextContact() {
 	for (contactProgress = 0; contactProgress < contacts.length; contactProgress++) {
 		showContact()
 	}
-	document.getElementById("contactsID").innerHTML = "There are " + contactProgress + " contacts to log, press 'Show contacts' above.";
+	document.getElementById("numberOfContacts").innerHTML = "There are " + contactProgress + " contacts to log, press 'Show contacts' above.";
+}
+
+function contactMarker() {
+    document.getElementById("numberOfContacts").innerHTML = "Showing " + (variableContact + 1) + " of " + contactsSquared.length + " available contacts.";
 }
 
 //Part of nextContact, this is what makes it work.
@@ -69,10 +73,10 @@ function zipAutofill() {
   	    	console.log(response)
   	    	var zipPlace = response.split(", ");
    	    	console.log(zipPlace)
-  		if (document.getElementById("cityID").value == "") {
+  		if (document.getElementById("cityID").value.trim() == "") {
    	    	document.getElementById("cityID").value = zipPlace[0];
   		}
- 		if (document.getElementById("stateID").value == "") {
+ 		if (document.getElementById("stateID").value.trim() == "") {
   	    	document.getElementById("stateID").value = zipPlace[1];
   		}
 	}
@@ -113,6 +117,7 @@ function next() {
 
 	currentContact = contactsSquared[variableContact];
 	currentContactTable();
+    contactMarker();
 }
 
 function previous() {
@@ -122,6 +127,7 @@ function previous() {
 
 	currentContact = contactsSquared[variableContact];
 	currentContactTable();
+    contactMarker();
 }
 
 function newContact() {
@@ -137,6 +143,7 @@ function newContact() {
     pushedVariable = JSON.parse(pushedVariable)
 	contactsSquared.push(pushedVariable);
 	console.log(pushedVariable)
+    contactMarker();
 }
 
 function delContact() {
@@ -147,8 +154,9 @@ function delContact() {
 	else {
 		contactsSquared.splice(variableContact,1);
 	}
-	console.log(contactsSquared)
-	override()
+	console.log(contactsSquared);
+	override();
+    contactMarker();
 }
 
 var demo1 = new autoComplete({

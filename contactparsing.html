@@ -20,7 +20,8 @@
 	<hr /><br />
 	<div>
 		<button onclick="nextContact()">Load contacts to memory</button>
-		<button onclick="check()">Show contacts</button>
+		<button onclick="check()">Show contacts</button> <br />
+		<div id="numberOfContacts">Press "Load contacts to memory" to start.</div>
 	</div>
 	<br /><br />
 
@@ -35,15 +36,16 @@
 		State: <input id="stateID" type="text" value="" size="20"><br />
 	</div><br /><br />
 
-	<div id="buttonboxes"><button onclick="newContact()">New</button>
+	<div id="buttonboxes">
+		<button onclick="newContact()">New</button>
 		<button onclick="delContact()">Delete</button>
 		<button onclick="previous()">Previous</button>
 		<button onclick="next()">Next</button>
 		<button onclick="updateContact()">Update</button>
 	</div>
 
-	<div id="contactsID">Press "Load contacts to memory" to start.</div>
-	
+	<div id="contactsID">Contacts will be shown here.</div>
+
 	<script>
 		var ac1 = new autoComplete({
    		selector: '#stateID',
