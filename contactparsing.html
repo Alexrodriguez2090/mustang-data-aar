@@ -18,12 +18,12 @@
 
 	<h1>Contact logger v2</h1>
 	<hr /><br />
-
-	<button onclick="nextContact()">Load contacts to memory</button>
-	<button onclick="check()">Show contacts</button>
+	<div>
+		<button onclick="nextContact()">Load contacts to memory</button>
+		<button onclick="check()">Show contacts</button>
+	</div>
 	<br /><br />
 
-	<br />
 	<div id="textboxes">
 		Name: <input id="nameID" type="text" value="" size="20"><br />
 		Email: <input id="emailID" type="text" value="" size="20"><br />
@@ -43,6 +43,7 @@
 	</div>
 
 	<div id="contactsID">Press "Load contacts to memory" to start.</div>
+	
 	<script>
 		var ac1 = new autoComplete({
    		selector: '#stateID',
