@@ -50,7 +50,8 @@ function check() {
 			"<br>Last Name: " + contactsSquared[i].lastName + "<br>Email: " + contactsSquared[i].email + "<br>Phone #: " + contactsSquared[i].phoneNumber + 
 			"<br>City: " + contactsSquared[i].city + ", " + contactsSquared[i].state + "<br>Hobby: " + contactsSquared[i].favoriteHobby + "<br><br><br>");
 	}
-	currentContactTable()
+	currentContactTable();
+    contactMarker();
 }
 
 function override() {
